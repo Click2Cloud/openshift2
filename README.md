@@ -1,1 +1,1 @@
-# openshift2
+# OpenShift2
