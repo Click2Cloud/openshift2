@@ -1,0 +1,89 @@
+<%
+* This example illustrates how you can send non-HTML content from 
+* FoxWeb scripts.  The code presents a list of all supported files 
+* in the script directory, and asks the user to select a file and 
+* an action.  Note that some of the HTTP headers sent by this
+* script are not recognized by certain browsers.
+
+ErrMsg = ""
+IF Request.FormCount("DnldFile") <> 0
+	* A file was selected in the form
+
+	Response.Buffer = .T.
+	FileName = Request.Form("DnldFile")
+	FileExtension = UPPER(JustExt(FileName))
+	* Verify that the file exists and is one of the authorized types
+	IF FILE(FileName) AND INLIST(FileExtension, "GIF", "JPG", "JPEG", "DOC", "PDF")
+		IF Request.Form("action") = "download"
+			* The content type must be changed in order to prevent browsers from displaying certain file types
+			ContentType = "application/unknown"
+			* Specify file name
+			Response.AddHeader("Content-Disposition", "attachment; filename=" + FileName)
+		ELSE
+			DO CASE
+			CASE FileExtension == "GIF"
+				ContentType = "image/gif"
+			CASE INLIST(FileExtension, "JPG", "JPEG")
+				ContentType = "image/jpeg"
+			CASE INLIST(FileExtension, "DOC")
+				ContentType = "application/msword"
+			CASE INLIST(FileExtension, "PDF")
+				ContentType = "application/pdf"
+			ENDCASE
+			* Specify file name
+			Response.AddHeader("Content-Disposition", "inline; filename=" + FileName)
+		ENDIF
+		* Read contents of file into string
+		FileContent = ReadFile(FileName)
+		* Specify size so that progress bar works properly
+		Response.AddHeader("Content-Length", Server.ToString(LEN(FileContent)))
+		Response.ContentType = ContentType
+		* Send file to browser
+		Response.Write(FileContent)
+		Response.End
+	ELSE
+		ErrMsg = "Selected file does not exist, or is not of an authorized file type."
+	ENDIF
+ENDIF
+
+* The rest of the program is only executed if a file was not sent to the browser
+
+* Get list of supported files in this directory
+DIMENSION aFiles(1)
+FilesList = ""
+* There is no way to specify a list of extensions, so we are looking for all files
+IF ADIR(aFiles, "*.*") > 0
+	* Create option list of supported files
+	FOR i = 1 TO ALEN(aFiles, 1)
+			IF INLIST(UPPER(JustExt(aFiles(i, 1))), "GIF", "JPG", "JPEG", "DOC", "PDF")
+			FilesList = FilesList + "<option>" + aFiles(i, 1) + "</option>" + CRLF
+			ENDIF
+	NEXT
+ENDIF
+%>
+<html>
+<head><title>Download Binary File Sample</title></head>
+<body>
+<h3>Download Binary File Sample</h3>
+
+<%IF NOT EMPTY(ErrMsg)%>
+	<font color="red"><%=ErrMsg%></font><p>
+<%ENDIF%>
+<%IF EMPTY(FilesList)%>
+	There are no files available for download at this time.
+<%ELSE%>
+	<form action="download.fwx" method="POST">
+	Select File:<br>
+	<select name="DnldFile" size=6>
+	<%=FilesList%>
+	</select>
+	<p>
+	Select Action:<br>
+	<input type="radio" name="action" value="browser" checked> View in browser<br>
+	<input type="radio" name="action" value="download"> Download<br>
+	<p>
+	<input type="submit" value="Get File">
+	</form>
+<%ENDIF%>
+</body>
+</html>

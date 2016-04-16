@@ -1,0 +1,12 @@
+c:\openshift\cartridges\dotnet\bin\control.exe.config
+c:\openshift\cartridges\dotnet\bin\control.exe
+c:\openshift\cartridges\dotnet\bin\control.pdb
+c:\openshift\cartridges\dotnet\src\control\obj\Debug\Control.csprojResolveAssemblyReference.cache
+c:\openshift\cartridges\dotnet\src\control\obj\Debug\control.exe
+c:\openshift\cartridges\dotnet\src\control\obj\Debug\control.pdb
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\dotnet\bin\control.exe.config
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\dotnet\src\control\obj\Debug\control.exe
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\dotnet\src\control\obj\Debug\control.pdb
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\dotnet\bin\control.exe
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\dotnet\bin\control.pdb
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\dotnet\src\control\obj\Debug\Control.csprojResolveAssemblyReference.cache

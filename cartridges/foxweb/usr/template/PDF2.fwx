@@ -1,0 +1,53 @@
+<%
+LOCAL TempFile
+
+DO CASE
+CASE Request.FormCount("CreatePDF") > 0
+	* This code creates the PDF file and sends it to the browser
+	M.TempFile = fwPDF.GetTempFile()
+	USE address SHARED
+	REPORT FORM address NOWAIT NOCONSOLE TO FILE (M.TempFile)
+	fwPDF.SendPDF(M.TempFile, , .T., fwPDF.PS2PDFMethod <> 0, request.Item('disposition') == 'attachment')
+CASE Request.QueryStringCount("ShowForm") > 0
+	* This code executes in the top frame and returns a form with PDF
+	* creation options.  The target of the form is the bottom frame
+	%>
+	<html>
+	<head>
+	<title>Create PDF file</title>
+	</head>
+	<body>
+	<form method="post" target="PDFOutput">
+	<table>
+	<tr>
+		<td>Delivery:</td>
+		<td>
+			<input type="radio" checked value="inline" name="disposition"> View in browser<br>
+			<input type="radio" value="attachment" name="disposition"> Download file
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="submit" value="Create PDF" name="CreatePDF">
+		</td>
+		<td>
+		</td>
+	</tr>
+	</table>
+	</form>
+	</body>
+	</html>
+	<%
+OTHERWISE
+	* This code is executed when you call the script for the first time.
+	* It returns a frameset with two frames.  The top frame contains a
+	* form with PDF creation options, while the bottom frame receives the
+	* PDF document if 'View in browser' is selected.
+	%>
+	<frameset rows="100,*">
+		<frame src="?ShowForm=1" name="PDFOptions">
+		<frame src="" name="PDFOutput">
+	</frameset>
+	<%
+ENDCASE
+%>

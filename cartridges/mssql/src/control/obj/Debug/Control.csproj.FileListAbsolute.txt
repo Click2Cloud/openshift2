@@ -1,0 +1,18 @@
+E:\Shrutika M\Projects\OpenShift\TFSWorkSpace\RGenPrisonWithSQL2014\Drop1.2\RGen.Openshift.Net\cartridges\openshift-origin-cartridge-mssql\bin\control.exe.config
+E:\Shrutika M\Projects\OpenShift\TFSWorkSpace\RGenPrisonWithSQL2014\Drop1.2\RGen.Openshift.Net\cartridges\openshift-origin-cartridge-mssql\bin\control.exe
+E:\Shrutika M\Projects\OpenShift\TFSWorkSpace\RGenPrisonWithSQL2014\Drop1.2\RGen.Openshift.Net\cartridges\openshift-origin-cartridge-mssql\bin\control.pdb
+E:\Shrutika M\Projects\OpenShift\TFSWorkSpace\RGenPrisonWithSQL2014\Drop1.2\RGen.Openshift.Net\cartridges\openshift-origin-cartridge-mssql\src\control\obj\Debug\Control.csprojResolveAssemblyReference.cache
+E:\Shrutika M\Projects\OpenShift\TFSWorkSpace\RGenPrisonWithSQL2014\Drop1.2\RGen.Openshift.Net\cartridges\openshift-origin-cartridge-mssql\src\control\obj\Debug\control.exe
+E:\Shrutika M\Projects\OpenShift\TFSWorkSpace\RGenPrisonWithSQL2014\Drop1.2\RGen.Openshift.Net\cartridges\openshift-origin-cartridge-mssql\src\control\obj\Debug\control.pdb
+c:\openshift\cartridges\mssql\bin\control.exe.config
+c:\openshift\cartridges\mssql\bin\control.exe
+c:\openshift\cartridges\mssql\bin\control.pdb
+c:\openshift\cartridges\mssql\src\control\obj\Debug\Control.csprojResolveAssemblyReference.cache
+c:\openshift\cartridges\mssql\src\control\obj\Debug\control.exe
+c:\openshift\cartridges\mssql\src\control\obj\Debug\control.pdb
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\mssql\bin\control.exe.config
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\mssql\src\control\obj\Debug\control.exe
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\mssql\src\control\obj\Debug\control.pdb
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\mssql\bin\control.exe
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\mssql\bin\control.pdb
+C:\Users\kapil.thakkar\Desktop\Target-19Apr2016\OSE2-Origin\Cartridges\cartridges\mssql\src\control\obj\Debug\Control.csprojResolveAssemblyReference.cache

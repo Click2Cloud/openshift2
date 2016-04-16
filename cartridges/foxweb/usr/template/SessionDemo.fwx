@@ -1,0 +1,139 @@
+<%
+SET CENTURY ON
+* Process form actions
+DO CASE
+CASE Request.Form("action") == "Abandon Session"
+	* "Abandon Session" button was clicked
+	session.abandon
+	VarValue = ""
+CASE Request.Form("action") == "Set"
+	* "Set" button was clicked
+	IF EMPTY(Request.Form("VarName"))
+		ErrMsg = "You must specify a variable name"
+	ELSE
+		DataType = Request.Form("DataType")
+		* Set the value of the session variable based on the data type
+		DO CASE
+		CASE M.DataType = 'C'
+			VarValue = Request.Form("VarValue")
+		CASE M.DataType = 'D'
+			VarValue = CTOD(Request.Form("VarValue"))
+		CASE M.DataType = 'N'
+			VarValue = VAL(Request.Form("VarValue"))
+		ENDCASE
+		Session.SetVar(Request.Form("VarName"), VarValue)
+	ENDIF
+CASE Request.Form("action") == "Del"
+	* "Del" button was clicked
+	Session.Remove(Request.Form("VarName"))
+CASE Request.Form("action") == "Set Page Color"
+	* "Set Page Color" button was clicked
+	Session.SetVar("PageColor", Request.Form("PageColor"))
+ENDCASE
+* Read PageColor session variable
+PageColor = Session.GetVar("PageColor")
+IF EMPTY(PageColor)
+	* Variable does not exist
+	PageColor="#ffffff"
+ENDIF
+%>
+<html>
+<head><title>Session Object Demo</title></head>
+<body bgcolor="<%=PageColor%>">
+<h2>Session Object Demo</h2>
+<form action="SessionDemo.fwx?<%=Session.Token%>" method="POST">
+Page Color:
+<select name="PageColor">
+<option value="#ffffff"<%IF PageColor="#ffffff"%> selected<%ENDIF%>>White</option>
+<option value="#ffcccc"<%IF PageColor="#ffcccc"%> selected<%ENDIF%>>Red</option>
+<option value="#ccccff"<%IF PageColor="#ccccff"%> selected<%ENDIF%>>Blue</option>
+<option value="#ffffcc"<%IF PageColor="#ffffcc"%> selected<%ENDIF%>>Yellow</option>
+</select>
+<input type="submit" name="action" value="Set Page Color"><br>
+</form>
+<b>SessionID</b>: <%=Session.GetSessionID()%>&nbsp;&nbsp;&nbsp;&nbsp;
+<b>Last Hit</b>: <%=Session.LastHit%>
+<p>
+<table border=0 cellspacing=1 cellpadding=1>
+<tr>
+	<td colspan=3 bgcolor="black" align="center"><font color="white"><b>Session Variables</b></font></td>
+	<td></td>
+</tr>
+<tr>
+	<td bgcolor="#999999">
+		<b>Name</b><br>
+	</td>
+	<td bgcolor="#999999">
+		<b>Value</b><br>
+	</td>
+	<td bgcolor="#999999">
+		<b>Data Type</b><br>
+	</td>
+	<td></td>
+</tr>
+<%
+* Retrieve array with all session variables
+DIMENSION aSessionVars(1)
+TotVars = Session.GetVarArray(@aSessionVars)
+IF TotVars > 0
+	* Traverse array and display each session variable
+	FOR i = 1 TO TotVars
+		%>
+		<form action="SessionDemo.fwx?<%=Session.Token%>" method="POST">
+		<tr>
+		<td>
+			<!-- Display the name the current session variable -->
+			<%=aSessionVars(i, 1)%>
+			<!-- Set a hidden field with the name the current session variable -->
+			<input type="hidden" name="VarName" value="<%=aSessionVars(i, 1)%>"><br>
+		</td>
+		<td>
+			<!-- Display the value the current session variable -->
+			<input type="text" name="VarValue" value="<%=aSessionVars(i, 2)%>" size=20 maxlen=50><br>
+		</td>
+		<td>
+			<!-- Display list of data types and select the data type of the current session variable -->
+			<select name="DataType">
+			<option value="C"<%IF TYPE("aSessionVars(i, 2)")="C"%> selected<%ENDIF%>>Character</option>
+			<option value="D"<%IF TYPE("aSessionVars(i, 2)")="D"%> selected<%ENDIF%>>Date</option>
+			<option value="N"<%IF TYPE("aSessionVars(i, 2)")="N"%> selected<%ENDIF%>>Number</option>
+			</select><br>
+		</td>
+		<td>
+			<input type="submit" name="action" value="Set">
+			<input type="submit" name="action" value="Del"><br>
+		</td>
+		</tr>
+		</form>
+		<%
+	NEXT
+ENDIF
+* Now display row that allows the addition of a new session variable
+%>
+<form action="SessionDemo.fwx?<%=Session.Token%>" method="POST">
+<tr>
+	<td>
+		<input type="text" name="VarName" size=12><br>
+	</td>
+	<td>
+		<input type="text" name="VarValue" size=20 maxlen=50><br>
+	</td>
+	<td>
+		<select name="DataType">
+		<option value="C">Character</option>
+		<option value="D">Date</option>
+		<option value="N">Number</option>
+		</select><br>
+	</td>
+	<td>
+		<input type="submit" name="action" value="Set"> &lt;== Add a session variable<br>
+	</td>
+</tr>
+</form>
+</table>
+<p>
+<form action="SessionDemo.fwx?<%=Session.Token%>" method="POST">
+<input type="submit" name="action" value="Abandon Session">
+<input type="submit" name="action" value="Refresh">
+</form>
+</body>
