@@ -1,1 +1,1 @@
-# OpenShift 2
+# Click2Cloud OpenShift .NET Kit
