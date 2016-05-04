@@ -1,10 +1,10 @@
-# Click2Cloud OpenShift .NET Development Kit
-This repository contains a complete package of OpenShift 2.x cloud with .NET and MSSQL capabilities. Please read the `LICENSE` file before using `Click2Cloud OpenShift .NET Development kit`.
+# Click2Cloud's OpenShift .NET Development Kit
+This repository contains a complete package of RedHat OpenShift 2.x cloud with .NET and MSSQL capabilities. Please read the `LICENSE` file before using `Click2Cloud OpenShift .NET Development kit`.
 
 <br>
 #####This kit contains the following items:
 
-1. `Cartridges` - It contains the DotNet, MSSQL, FoxWeb and WinDIY cartridges
+1. `Cartridges` - It contains the DotNet, MSSQL, FoxWeb, Sharepoint and WinDIY cartridges
 
 2. `Osev2-scipt` - It contains the OSEv2 auto scripts which helps you to build your OpenShift 2.x private cloud quickly and easily
 
