@@ -1,5 +1,0 @@
-C:\Shrutika M\Source\Workspaces\OpenShift\Cartridges\SharePoint 2013\Approach3\sharepoint\bin\install.exe.config
-C:\Shrutika M\Source\Workspaces\OpenShift\Cartridges\SharePoint 2013\Approach3\sharepoint\bin\install.exe
-C:\Shrutika M\Source\Workspaces\OpenShift\Cartridges\SharePoint 2013\Approach3\sharepoint\bin\install.pdb
-C:\Shrutika M\Source\Workspaces\OpenShift\Cartridges\SharePoint 2013\Approach3\sharepoint\src\install\obj\Debug\install.exe
-C:\Shrutika M\Source\Workspaces\OpenShift\Cartridges\SharePoint 2013\Approach3\sharepoint\src\install\obj\Debug\install.pdb

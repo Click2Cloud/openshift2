@@ -1,8 +1,0 @@
-<%
-LOCAL TempFile
-* This code creates the PDF file and sends it to the browser
-M.TempFile = fwPDF.GetTempFile()
-USE address SHARED
-REPORT FORM address NOWAIT NOCONSOLE TO FILE (M.TempFile)
-fwPDF.SendPDF(M.TempFile, , .T., fwPDF.PS2PDFMethod <> 0, .F.)
-%>
